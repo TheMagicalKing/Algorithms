@@ -1,9 +1,49 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 public class SortingAlgorithms {
 
+
     //Heap sort
+
+    public void heapSort(){
+
+        Random rand = new Random();
+
+        SortingAlgorithms h = new SortingAlgorithms(); // Not edited, but I would recommend static methods for this example
+
+        ArrayList<Integer> array = new ArrayList<Integer>();
+
+        // Arrays are automatically resized, no need to make an empty array, etc.
+
+
+        int forMax = 11;
+        for (int forCount=0; forCount<forMax;forCount++){
+            array.add(rand.nextInt(forMax));
+
+        }
+        System.out.println(array);
+
+        int size = array.size();
+
+        // Prerequisites for max heap sorting.
+
+        for(int i = size / 2 - 1; i >= 0; i--) {
+            h.maxHeap(array, i, size);
+        }
+
+        for(int i = size - 1; i >= 0; i--) {
+            Collections.swap(array, i, 0);
+            h.maxHeap(array, 0, i);
+        }
+
+        System.out.print(array);
+        // Output: [-2, 7, 10, 16, 17, 19, 30, 50, 70, 86]
+        // Time: 284549 nanoseconds
+
+
+    }
 
 
     public void maxHeap(ArrayList<Integer> array, int index, int size) {
@@ -25,44 +65,4 @@ public class SortingAlgorithms {
         }
 
     }
-
-
-
-    public static void main(String[] args) {
-
-        SortingAlgorithms h = new SortingAlgorithms(); // Not edited, but I would recommend static methods for this example
-
-        ArrayList<Integer> array = new ArrayList<Integer>();
-
-        // Arrays are automatically resized, no need to make an empty array, etc.
-
-        array.add(30);
-        array.add(10);
-        array.add(16);
-        array.add(17);
-        array.add(19);
-        array.add(50);
-        array.add(70);
-        array.add(86);
-        array.add(7);
-        array.add(-2);
-
-        int size = array.size();
-
-        // Prerequisites for max heap sorting.
-
-        for(int i = size / 2 - 1; i >= 0; i--) {
-            h.maxHeap(array, i, size);
-        }
-
-        for(int i = size - 1; i >= 0; i--) {
-            Collections.swap(array, i, 0);
-            h.maxHeap(array, 0, i);
-        }
-
-        System.out.print(array);
-        // Output: [-2, 7, 10, 16, 17, 19, 30, 50, 70, 86]
-        // Time: 284549 nanoseconds
-
-}
 }
