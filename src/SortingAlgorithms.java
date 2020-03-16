@@ -4,43 +4,50 @@ import java.util.Random;
 
 public class SortingAlgorithms {
 
+    Random rand = new Random();
+    ArrayList<Integer> data = new ArrayList<Integer>();
+    //---------------------------------\\
+    //-----|---|--|̅ ̅ ----/\----|̲̅ ̲̅ |----\\
+    //-----|___|--|__---/__\---|-------\\
+    //-----|---|--|__--/----\--|-------\\
+    //---------------------------------\\
+    //-----|̅ ̅ ̅ ---|̅ ̅ ̅ |--|̅ ̅ \--̅ ̅|̅------\\
+    //-----˪———˥--|   |--|__/---|------\\
+    //------̲ ̲ ̲ |--|___|--|--\---|------\\
+    //---------------------------------\\
 
-    //Heap sort
 
-    public void heapSort(){
+    public void heapSort(int forMax){
 
-        Random rand = new Random();
+
 
         SortingAlgorithms h = new SortingAlgorithms(); // Not edited, but I would recommend static methods for this example
 
-        ArrayList<Integer> array = new ArrayList<Integer>();
-
-        // Arrays are automatically resized, no need to make an empty array, etc.
 
 
-        int forMax = 11;
+        // De næste par linjer sørger for at arrayet bliver tomt og får angivet nogle forskellige værdier
+
+        data.clear();
         for (int forCount=0; forCount<forMax;forCount++){
-            array.add(rand.nextInt(forMax));
-
+            data.add(rand.nextInt(forMax));
         }
-        System.out.println(array);
+        System.out.println("Det originale Array\n" + data);
 
-        int size = array.size();
+        int size = data.size();
 
         // Prerequisites for max heap sorting.
 
         for(int i = size / 2 - 1; i >= 0; i--) {
-            h.maxHeap(array, i, size);
+            h.maxHeap(data, i, size);
         }
 
         for(int i = size - 1; i >= 0; i--) {
-            Collections.swap(array, i, 0);
-            h.maxHeap(array, 0, i);
+            Collections.swap(data, i, 0);
+            h.maxHeap(data, 0, i);
         }
 
-        System.out.print(array);
-        // Output: [-2, 7, 10, 16, 17, 19, 30, 50, 70, 86]
-        // Time: 284549 nanoseconds
+        System.out.print("\nDet heap sorterede array\n"+data+"\n");
+
 
 
     }
@@ -65,4 +72,40 @@ public class SortingAlgorithms {
         }
 
     }
+
+    //---------------------------------\\
+    //----|̅ \--|    |--|̅ \--|----|̅ ̅ ---\\
+    //----|_/--|    |--|_/--|----|__---\\
+    //----| \--|    |--| \--|----|̅ ̅ ---\\
+    //----|_/---\__/---|_/--|̲ ̲ --|__---\\
+    //---------------------------------\\
+    //-----|̅ ̅ ̅ ---|̅ ̅ ̅ |--|̅ ̅ \--̅ ̅|̅------\\
+    //-----˪———˥--|   |--|__/---|------\\
+    //------̲ ̲ ̲ |--|___|--|--\---|------\\
+    //---------------------------------\\
+
+    void bubbleSort(int forMax){
+        data.clear();
+        for (int forCount=0; forCount<forMax;forCount++){
+            data.add(forCount);
+        }
+        System.out.println("\nfør Arrayet blev rusket om\n" + data);
+        Collections.shuffle(data);
+        System.out.println("\nefter Arrayet blev rusket om\n" + data);
+        int n = data.size();
+        for (int i = 0; i < n-1; i++){
+            for (int j = 0; j < n-i-1; j++){
+                if (data.get(j)>data.get(j+1)){
+                    int temp = data.get(j);
+                    int a = data.get(j+1);
+                    data.set(j, a);
+                    data.set(j+1,temp);
+                }
+            }
+        }
+        System.out.println("\nefter Arrayet er blevet sorteret med bubble sort \n" + data);
+    }
+
+
+
 }
